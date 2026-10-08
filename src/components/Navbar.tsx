@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'Início', path: '/' },
@@ -12,109 +12,103 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close sidebar on route change
-  useEffect(() => setIsOpen(false), [location]);
+    setIsOpen(false);
+  }, [location]);
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: -80 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
-          scrolled 
-            ? 'glass py-4 px-6 md:px-12 border-[var(--border)]' 
-            : 'bg-transparent py-8 px-6 md:px-12 border-transparent'
-        }`}
+        className="fixed top-0 w-full z-50 px-4 sm:px-6 md:px-12 py-4"
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link to="/" className="logo font-black text-xl tracking-tighter z-50">
-            EDGAR<span className="text-[var(--accent)]">ALEXANDRE</span>
+        <div className="max-w-7xl mx-auto flex justify-between items-center bg-[#FFFDF6] border-2 border-black rounded-xl p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <Link
+            to="/"
+            className="font-black text-lg sm:text-xl tracking-tight text-black flex items-center gap-2"
+          >
+            <span className="bg-[#FFC567] border-2 border-black px-2 py-0.5 rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              EDGAR
+            </span>
+            <span className="text-black">ALEXANDRE</span>
           </Link>
-          
-          {/* Desktop Nav */}
-          <ul className="hidden md:flex gap-12 items-center">
+
+          <ul className="hidden md:flex gap-3 items-center">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 relative group ${
-                      isActive ? 'text-[var(--accent)]' : 'text-[var(--text-dim)] hover:text-white'
+                    className={`text-xs font-black uppercase tracking-wider px-4 py-2 rounded-lg border-2 transition-all ${
+                      isActive
+                        ? 'bg-[#FB7DA8] text-black border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+                        : 'bg-transparent text-black border-transparent hover:border-black hover:bg-[#FFC567]'
                     }`}
                   >
                     {link.name}
-                    <span className={`absolute -bottom-1 left-0 w-0 h-[1px] bg-[var(--accent)] transition-all duration-300 group-hover:w-full ${isActive ? 'w-full' : ''}`} />
                   </Link>
                 </li>
               );
             })}
           </ul>
 
-          {/* Hamburger Menu */}
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden z-50 p-2 text-white"
+            className="md:hidden p-2 text-black bg-[#FFC567] border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Sidebar */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-[var(--bg)] flex flex-col justify-center items-center p-8 md:hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-[#FFFDF6] flex flex-col justify-between p-8 pt-28 md:hidden"
           >
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-               <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--accent)] blur-[150px] rounded-full" />
+            <div className="border-2 border-black bg-[#FFC567] p-4 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div className="flex gap-2 mb-6 border-b-2 border-black pb-3">
+                <span className="w-3 h-3 rounded-full bg-[#FD5A46] border border-black" />
+                <span className="w-3 h-3 rounded-full bg-[#FFC567] border border-black" />
+                <span className="w-3 h-3 rounded-full bg-[#00995E] border border-black" />
+              </div>
+
+              <ul className="flex flex-col gap-4">
+                {navLinks.map((link, i) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <motion.li
+                      key={link.path}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <Link
+                        to={link.path}
+                        className={`block text-2xl font-black p-3 rounded-lg border-2 border-black ${
+                          isActive
+                            ? 'bg-[#FB7DA8] text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]'
+                            : 'bg-white text-black'
+                        }`}
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.li>
+                  );
+                })}
+              </ul>
             </div>
 
-            <ul className="flex flex-col gap-8 items-center text-center">
-              {navLinks.map((link, i) => {
-                const isActive = location.pathname === link.path;
-                return (
-                  <motion.li 
-                    key={link.path}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    <Link
-                      to={link.path}
-                      className={`text-4xl font-black tracking-tighter ${
-                        isActive ? 'text-[var(--accent)]' : 'text-white'
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.li>
-                );
-              })}
-            </ul>
-
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-20 text-[var(--text-dim)] font-mono text-xs uppercase tracking-widest"
-            >
+            <div className="bg-white border-2 border-black rounded-xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center font-mono text-xs font-bold text-black uppercase">
               alexandreedgar77@gmail.com
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

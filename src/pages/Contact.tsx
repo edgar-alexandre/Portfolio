@@ -3,31 +3,59 @@ import Layout from '../components/Layout';
 import { Mail, Linkedin, Github, Phone, ArrowUpRight } from 'lucide-react';
 
 const socialLinks = [
-  { name: 'E-mail', value: 'alexandreedgar77@gmail.com', href: 'mailto:alexandreedgar77@gmail.com', icon: <Mail size={22} /> },
-  { name: 'LinkedIn', value: 'edgar-alexandre-0aab0539b', href: 'https://linkedin.com/in/edgar-alexandre-0aab0539b', icon: <Linkedin size={22} /> },
-  { name: 'GitHub', value: 'H3lboyAl3x', href: 'https://github.com/H3lboyAl3x', icon: <Github size={22} /> },
-  { name: 'Telefone', value: '+244 975 696 347', href: 'tel:+244975696347', icon: <Phone size={22} /> },
+  {
+    name: 'E-mail',
+    value: 'alexandreedgar77@gmail.com',
+    href: 'mailto:alexandreedgar77@gmail.com',
+    icon: <Mail size={22} />,
+    bgColor: 'bg-[#FFC567]'
+  },
+  {
+    name: 'LinkedIn',
+    value: 'edgar-alexandre-0aab0539b',
+    href: 'https://linkedin.com/in/edgar-alexandre-0aab0539b',
+    icon: <Linkedin size={22} />,
+    bgColor: 'bg-[#058CD7]',
+    textColor: 'text-white'
+  },
+  {
+    name: 'GitHub',
+    value: '@edgar-alexandre',
+    href: 'https://github.com/edgar-alexandre',
+    icon: <Github size={22} />,
+    bgColor: 'bg-[#FB7DA8]'
+  },
+  {
+    name: 'Telefone',
+    value: '+244 975 696 347',
+    href: 'tel:+244975696347',
+    icon: <Phone size={22} />,
+    bgColor: 'bg-[#00995E]',
+    textColor: 'text-white'
+  }
 ];
 
 export default function Contact() {
   return (
     <Layout>
       <div className="max-w-5xl mx-auto">
-        <header className="mb-24 md:mb-32">
-          <motion.h1 
+        <header className="mb-16">
+          <div className="inline-block bg-[#FFC567] border-2 border-black px-4 py-1 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mb-4">
+            <span className="font-mono text-xs font-black uppercase">// VAMOS TRABALHAR TOGETHER</span>
+          </div>
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-fluid-h1 leading-[0.85] mb-8"
+            className="text-fluid-h1 leading-[0.9] mb-6 text-black"
           >
-            VAMOS <span className="text-[var(--accent)]">CONVERSAR.</span>
+            VAMOS <span className="bg-[#FD5A46] text-white border-2 border-black px-1 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">CONVERSAR.</span>
           </motion.h1>
-          <p className="text-fluid-body text-[var(--text-dim)] max-w-2xl font-light">
-            Sempre em busca de projetos desafiadores e parcerias técnicas que quebrem paradigmas. 
-            Me conte sobre sua ideia e vamos construir algo extraordinário.
+          <p className="text-fluid-body text-black max-w-2xl font-medium leading-relaxed">
+            Sempre disponível para novos desafios profissionais, projetos freelances ou integração em equipas de alto nível.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {socialLinks.map((link, i) => (
             <motion.a
               key={link.name}
@@ -37,20 +65,22 @@ export default function Contact() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="group glass p-10 rounded-xl flex flex-col justify-between h-64 border-white/5 transition-all duration-500 hover:border-[var(--accent)] hover:bg-white/[0.02]"
+              className="group bg-[#FFFDF6] border-2 border-black p-8 rounded-2xl flex flex-col justify-between h-56 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hover:shadow-[7px_7px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 transition-all"
             >
               <div className="flex justify-between items-start">
-                <div className="p-3 bg-white/5 rounded-lg text-white group-hover:text-[var(--accent)] transition-colors">
+                <div className={`p-3 border-2 border-black rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${link.bgColor} ${link.textColor || 'text-black'}`}>
                   {link.icon}
                 </div>
-                <ArrowUpRight size={20} className="text-[var(--text-dim)] group-hover:text-white transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <div className="p-2 bg-black text-white rounded-lg group-hover:bg-[#FD5A46] transition-colors">
+                  <ArrowUpRight size={20} />
+                </div>
               </div>
-              
+
               <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--accent)] mb-2 opacity-70">
+                <p className="text-xs font-mono font-black uppercase text-black/60 mb-1">
                   {link.name}
                 </p>
-                <p className="text-xl md:text-2xl font-bold text-white break-words">
+                <p className="text-lg md:text-xl font-black text-black break-words">
                   {link.value}
                 </p>
               </div>
@@ -58,14 +88,12 @@ export default function Contact() {
           ))}
         </div>
 
-        <footer className="mt-32 pt-12 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-6 opacity-40 hover:opacity-100 transition-opacity">
-          <p className="font-mono text-[10px] uppercase tracking-widest leading-loose text-center md:text-left">
-            © {new Date().getFullYear()} Edgar Alexandre <br/>
-            Engineered with passion in Luanda, Angola.
+        <footer className="mt-20 pt-8 border-t-2 border-black flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-mono text-xs font-bold text-black uppercase text-center md:text-left">
+            © {new Date().getFullYear()} Edgar Alexandre • Luanda, Angola
           </p>
-          <div className="flex gap-8 font-mono text-[10px] uppercase tracking-widest font-black">
-             <span className="text-[var(--accent)]">Available for projects</span>
-             <span>2024 Edition</span>
+          <div className="inline-flex items-center gap-2 bg-[#00995E] text-white border-2 border-black px-4 py-1.5 rounded-lg font-mono text-xs font-black uppercase shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span>● Available for Work</span>
           </div>
         </footer>
       </div>

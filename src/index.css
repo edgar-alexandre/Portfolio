@@ -1,65 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --shadow-brutal: 4px 4px 0px 0px #000000;
+  --shadow-brutal-sm: 2px 2px 0px 0px #000000;
+  --shadow-brutal-lg: 6px 6px 0px 0px #000000;
 }
 
 :root {
-  --bg: #050505;
-  --accent: #00f2ff;
-  --accent-rgb: 0, 242, 255;
-  --accent-dim: rgba(0, 242, 255, 0.1);
-  --card-bg: rgba(10, 10, 12, 0.4);
-  --border: rgba(255, 255, 255, 0.05);
-  --text-main: #ffffff;
-  --text-dim: #8a8a8e;
+  --bg: #FAF7F0;
+  --bg-card: #FFFDF6;
+  --text-main: #000000;
+  --text-dim: #4A4A4A;
+  --border: #000000;
+  
+  --yellow: #FFC567;
+  --pink: #FB7DA8;
+  --orange: #FD5A46;
+  --purple: #552CB7;
+  --green: #00995E;
+  --blue: #058CD7;
 }
 
 @layer base {
   body {
-    @apply bg-[var(--bg)] text-[var(--text-main)] font-sans antialiased overflow-x-hidden selection:bg-[var(--accent)] selection:text-black;
+    @apply bg-[var(--bg)] text-[var(--text-main)] font-sans antialiased overflow-x-hidden selection:bg-[var(--yellow)] selection:text-black;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-[-0.04em] font-black;
+    @apply tracking-tight font-black text-[var(--text-main)];
   }
 }
 
-/* Fluid Typography Utilities */
 @layer utilities {
   .text-fluid-h1 {
-    font-size: clamp(3rem, 10vw, 8rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
   }
   .text-fluid-h2 {
-    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
   }
   .text-fluid-body {
-    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    font-size: clamp(1rem, 1.1vw, 1.2rem);
   }
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 10px;
+  background: var(--text-main);
+  border-radius: 0px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--yellow);
 }
 
-/* Utilities */
-.glass {
-  @apply backdrop-blur-xl bg-[var(--card-bg)] border border-[var(--border)];
+.brutal-card {
+  @apply bg-[var(--bg-card)] border-2 border-black shadow-brutal rounded-xl transition-all;
 }
 
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-[var(--accent)];
+.brutal-btn {
+  @apply border-2 border-black font-black uppercase tracking-wider rounded-lg shadow-brutal transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-none;
 }

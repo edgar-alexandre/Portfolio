@@ -1,96 +1,117 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import Layout from '../components/Layout';
-import { ArrowRight, Terminal } from 'lucide-react';
+import { ArrowRight, Terminal, Sparkles, Code2, Cpu } from 'lucide-react';
 
 export default function Home() {
   return (
     <Layout>
-      <section className="min-h-[85vh] flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="min-h-[75vh] flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             className="lg:col-span-8 flex flex-col"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--accent-dim)] border border-[var(--accent-dim)] rounded-full w-fit mb-8">
-              <Terminal size={14} className="text-[var(--accent)]" />
-              <span className="font-mono text-[10px] text-[var(--accent)] tracking-[0.2em] font-bold uppercase">
-                Software Engineer // Full-Stack
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#FFC567] border-2 border-black rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] w-fit mb-6">
+              <Terminal size={16} className="text-black" />
+              <span className="font-mono text-xs text-black tracking-wider font-extrabold uppercase">
+                Fullstack & Mobile Developer
               </span>
             </div>
-            
-            <h1 className="text-fluid-h1 leading-[0.85] mb-10">
+
+            <h1 className="text-fluid-h1 leading-[0.9] mb-8 font-black text-black">
               CRIANDO O <br />
-              <span className="text-[var(--accent)] relative inline-block">
+              <span className="bg-[#FB7DA8] text-black border-2 border-black px-3 py-1 inline-block rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mt-2">
                 AMANHÃ.
-                <motion.span 
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ delay: 1, duration: 1 }}
-                  className="absolute bottom-4 left-0 h-[8px] bg-[var(--accent)] opacity-20 -z-10"
-                />
               </span>
             </h1>
 
-            <p className="text-fluid-body text-[var(--text-dim)] max-w-xl mb-12 leading-relaxed">
-              Especialista em arquiteturas escaláveis com <span className="text-white font-medium italic">Node.js</span> e <span className="text-white font-medium italic">React Native</span>. 
-              Transformando desafios complexos em produtos digitais de impacto global.
+            <p className="text-fluid-body text-[#333333] max-w-xl mb-10 leading-relaxed font-medium">
+              Especialista em ecossistemas escaláveis com <span className="bg-[#FFC567] px-1.5 py-0.5 border border-black font-bold">Node.js</span>, <span className="bg-[#058CD7] text-white px-1.5 py-0.5 border border-black font-bold">NestJS</span>, <span className="bg-[#FB7DA8] px-1.5 py-0.5 border border-black font-bold">React Native</span> e <span className="bg-[#00995E] text-white px-1.5 py-0.5 border border-black font-bold">Docker</span>. Transformando desafios em soluções de alto impacto.
             </p>
 
-            <div className="flex flex-wrap gap-6 items-center">
+            <div className="flex flex-wrap gap-4 items-center">
               <Link
                 to="/projetos"
-                className="group relative inline-flex items-center gap-3 bg-white text-black font-black text-sm py-5 px-10 rounded-sm overflow-hidden"
+                className="group inline-flex items-center gap-3 bg-[#FD5A46] text-white font-black text-sm py-4 px-8 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all uppercase tracking-wider"
               >
-                <span className="relative z-10 uppercase">Explorar Projetos</span>
-                <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />
-                <div className="absolute inset-0 bg-[var(--accent)] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                Explorar Projetos
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/sobre"
-                className="text-xs font-bold uppercase tracking-[0.2em] text-white hover:text-[var(--accent)] transition-colors border-b border-transparent hover:border-[var(--accent)] pb-1"
+                className="inline-flex items-center gap-2 bg-[#FFFDF6] text-black font-extrabold text-sm py-4 px-8 rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFC567] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all uppercase tracking-wider"
               >
                 Minha Trajetória
               </Link>
             </div>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
             className="lg:col-span-4 hidden lg:block"
           >
-            <div className="relative aspect-square">
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)] to-blue-500 rounded-full blur-[120px] opacity-20 animate-pulse" />
-              <div className="glass h-full w-full rounded-3xl p-10 flex flex-col justify-between border-white/5">
-                <div className="space-y-4">
-                   <div className="w-12 h-12 bg-[var(--accent)] rounded-lg flex items-center justify-center text-black">
-                     <Terminal size={24} />
-                   </div>
-                   <h3 className="text-2xl font-black">Expertise em <br/> Performance</h3>
+            <div className="bg-[#FFFDF6] border-2 border-black rounded-2xl p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <div className="flex items-center justify-between border-b-2 border-black pb-3 mb-6">
+                <div className="flex gap-2">
+                  <span className="w-3.5 h-3.5 rounded-full bg-[#FD5A46] border border-black" />
+                  <span className="w-3.5 h-3.5 rounded-full bg-[#FFC567] border border-black" />
+                  <span className="w-3.5 h-3.5 rounded-full bg-[#00995E] border border-black" />
                 </div>
-                <div className="space-y-2">
-                   <p className="text-[var(--text-dim)] text-sm font-mono tracking-tighter">// SKILLS LOADED</p>
-                   <p className="text-[var(--text-dim)] text-sm">Microservices • Cloud Architecture • Real-time Data • Clean Code</p>
+                <span className="font-mono text-xs font-black uppercase text-black">system_status.sys</span>
+              </div>
+
+              <div className="space-y-6">
+                <div className="bg-[#552CB7] text-white border-2 border-black rounded-xl p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-3">
+                  <Cpu size={32} className="text-[#FFC567]" />
+                  <div>
+                    <p className="text-xs font-mono font-bold uppercase text-[#FFC567]">Experiência</p>
+                    <p className="text-lg font-black">4+ Anos Freelance</p>
+                  </div>
+                </div>
+
+                <div className="bg-[#00995E] text-white border-2 border-black rounded-xl p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-3">
+                  <Code2 size={32} className="text-white" />
+                  <div>
+                    <p className="text-xs font-mono font-bold uppercase text-white/80">Stack Atual</p>
+                    <p className="text-lg font-black">Fullstack & Mobile</p>
+                  </div>
+                </div>
+
+                <div className="bg-[#FFC567] text-black border-2 border-black rounded-xl p-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center gap-3">
+                  <Sparkles size={32} className="text-black" />
+                  <div>
+                    <p className="text-xs font-mono font-bold uppercase text-black/70">Deploy & DevOps</p>
+                    <p className="text-lg font-black">Docker & Pipelines</p>
+                  </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Tech Stack Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mt-20 md:mt-32 pt-12 border-t border-[var(--border)] flex flex-wrap gap-8 items-center justify-center md:justify-start grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+          transition={{ delay: 0.5 }}
+          className="mt-16 md:mt-24 bg-[#FFFDF6] border-2 border-black rounded-xl p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-wrap gap-4 items-center justify-around"
         >
-          {['Node.js', 'TypeScript', 'React Native', 'PostgreSQL', 'Docker', 'AWS'].map((tech) => (
-            <span key={tech} className="font-mono text-xs font-bold tracking-[0.2em] uppercase">{tech}</span>
-          ))}
+          {['React Native', 'Flutter', 'Next.js', 'NestJS', 'PostgreSQL', 'Docker'].map((tech, idx) => {
+            const colors = ['bg-[#FFC567]', 'bg-[#FB7DA8]', 'bg-[#058CD7]', 'bg-[#FD5A46]', 'bg-[#00995E]', 'bg-[#552CB7]'];
+            const textColor = idx === 2 || idx === 4 || idx === 5 ? 'text-white' : 'text-black';
+            return (
+              <span
+                key={tech}
+                className={`font-mono text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${colors[idx % colors.length]} ${textColor}`}
+              >
+                {tech}
+              </span>
+            );
+          })}
         </motion.div>
       </section>
     </Layout>
